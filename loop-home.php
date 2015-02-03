@@ -21,7 +21,7 @@
 						<?php if ( strlen( get_the_title() ) > 0 ) : ?>
 							<h2 class="post-title"><?php the_title(); ?></h2>
 						<?php else: // No title ?>
-							<h2 class="post-title"><?php echo get_the_time( 'F jS, Y' ); ?></h2>
+							<h2 class="post-title"><?php echo get_the_time( get_option( 'date_format' ) ); ?></h2>
 						<?php endif; ?>
 					</a>
 				</article>

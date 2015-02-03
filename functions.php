@@ -49,20 +49,20 @@ if ( ! function_exists( 'simple_shop_body_class' ) ) {
 	function simple_shop_body_class( $classes ) {
 		global $sds_theme_options, $content_width;
 
-		// Symphony Customizer
+		// Simple Shop Customizer
 		$simple_shop_customizer = Simple_Shop_Customizer_Instance();
 
 		// Content layout was specified by user in Theme Options
 		if ( isset( $sds_theme_options['body_class'] ) && ! empty( $sds_theme_options['body_class'] ) )
 			// 1 Column
 			if ( $sds_theme_options['body_class'] !== 'cols-1' )
-				$content_width = 1358;
+				$content_width = 950;
 
 		// Page Template was specified by the user for this page
 		if ( ! empty( $sds_theme_options['page_template'] ) && $sds_theme_options['page_template'] !== 'default' )
 			// Full Width or Landing Page
 			if ( in_array( $sds_theme_options['page_template'], array( 'page-full-width.php', 'page-landing-page.php' ) ) )
-				$content_width = 1358;
+				$content_width = 950;
 
 
 		// Customizer
@@ -270,6 +270,6 @@ if ( ! function_exists( 'sds_copyright_branding' ) ) {
 	add_filter( 'sds_copyright_branding', 'sds_copyright_branding', 10, 2 );
 
 	function sds_copyright_branding( $text, $theme_name ) {
-		return sprintf( __( '<a href="%1$s">%2$s by Slocum Studio</a>', 'simple-shop' ), esc_url( 'http://slocumthemes.com/wordpress-themes/simple-shop-free/' ), $theme_name );
+		return sprintf( __( '<a href="%1$s">%2$s by Slocum Studio</a>', 'simple-shop' ), esc_url( 'https://slocumthemes.com/wordpress-themes/simple-shop-free/' ), $theme_name );
 	}
 }
