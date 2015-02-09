@@ -241,6 +241,40 @@ class Simple_Shop_Customizer {
 		$colors_section->panel = 'simple_shop_colors_and_background'; // Adjust Panel
 		$colors_section->priority = 10; // Adjust Priority (Top)
 
+
+		/**
+		 * Primary Theme Color
+		 */
+
+		// Setting
+		$wp_customize->add_setting(
+			'primary_color',
+			array(
+				'default' => apply_filters( 'theme_mod_primary_color', '' ),
+				'sanitize_callback' => 'sanitize_hex_color',
+				'sanitize_js_callback' => 'maybe_hash_hex_color'
+			)
+		);
+
+		// Control
+		$wp_customize->add_control(
+			new WP_Customize_Color_Control(
+				$wp_customize,
+				'primary_color',
+				array(
+					'label' => __( 'Primary Theme Color', 'simple-shop' ),
+					'section' => 'colors',
+					'settings' => 'primary_color',
+					'priority' => 10
+				)
+			)
+		);
+
+		/*
+		 * Content Color (remove; registered in SDS Core)
+		 */
+		$wp_customize->remove_control( 'content_color' );
+
 		// TODO: below 4.0 support
 	}
 

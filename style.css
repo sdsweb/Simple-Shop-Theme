@@ -4,10 +4,10 @@
  * Description: Simple Shop is an easy to use storefront for your WooCommerce business. Display your products in a simple, clean, and modern layout. Simple Shop supports a custom homepage, archive pages, and blog posts. This theme is responsive, leverages the front-end Customizer and yet it's lightweight. Now supports live front-end text widget editing via Note. More info - http://wordpress.org/plugins/note/.
  * Author: Slocum Studio
  * Author URI: https://slocumthemes.com/
- * Version: 1.0.2
+ * Version: 1.0.3
  * License: GPL2+
  * License URI: http://www.gnu.org/licenses/gpl.html
- * Tags: blue, green, orange, pink, purple, red, white, light, two-columns, left-sidebar, fluid-layout, custom-colors, custom-menu, editor-style, featured-images, sticky-post, theme-options, threaded-comments
+ * Tags: black, blue, brown, gray, green, orange, pink, purple, red, silver, tan, white, yellow, dark, light, one-column, two-columns, right-sidebar, fluid-layout, responsive-layout, custom-colors, custom-menu, editor-style, featured-images, sticky-post, theme-options, threaded-comments, custom-background, custom-menu, editor-style, full-width-template
 
  * Simple Shop WordPress theme, Copyright (C) 2015 Slocum Studio
  * Simple Shop WordPress theme is licensed under the GPL.
@@ -1227,6 +1227,11 @@ section.widget.front-page-slider:first-child .block-title {
 	color: #1fb25a;
 }
 
+#front-page-sidebar .front-page-sidebar.sds-social-media-widget a,
+#front-page-sidebar .front-page-sidebar.sds-social-media-widget:hover a {
+	color: #fff;
+}
+
 /* Product Widget ===================*/
 
 #front-page-sidebar .front-page-sidebar.woocommerce {
@@ -2078,7 +2083,7 @@ aside.sidebar section.widget form.register input[type=submit] {
 }
 
 .widget .social-media-icons a:hover, footer#footer .widget .social-media-icons a:hover{
-	background: #168041;
+	/*background: #168041;*/
 }
 
 /*   -------------

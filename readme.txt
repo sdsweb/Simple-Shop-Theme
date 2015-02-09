@@ -47,3 +47,27 @@
  * License: GPL2
  * Copyright: Slocum Design Studio, http://slocumstudio.com/
  */
+
+/**
+ * Theme Screenshot Image - http://www.gratisography.com/pictures/130_1.jpg
+ * License: GPL Compatible (CC0; public domain)
+ * Copyright: Ryan McGuire, http://www.mcguiremade.com/, http://www.gratisography.com/
+ */
+
+/**
+ * Theme Screenshot Image - http://www.gratisography.com/pictures/132_1.jpg
+ * License: GPL Compatible (CC0; public domain)
+ * Copyright: Ryan McGuire, http://www.mcguiremade.com/, http://www.gratisography.com/
+ */
+
+/**
+ * Theme Screenshot Image - http://www.gratisography.com/pictures/133_1.jpg
+ * License: GPL Compatible (CC0; public domain)
+ * Copyright: Ryan McGuire, http://www.mcguiremade.com/, http://www.gratisography.com/
+ */
+
+/**
+ * Theme Screenshot Image - http://www.gratisography.com/pictures/169_1.jpg
+ * License: GPL Compatible (CC0; public domain)
+ * Copyright: Ryan McGuire, http://www.mcguiremade.com/, http://www.gratisography.com/
+ */

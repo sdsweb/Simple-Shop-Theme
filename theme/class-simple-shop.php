@@ -7,7 +7,7 @@ class Simple_Shop {
 	/**
 	 * @var string
 	 */
-	public $version = '1.0.2';
+	public $version = '1.0.3';
 
 	private static $instance; // Keep track of the instance
 
@@ -39,6 +39,7 @@ class Simple_Shop {
 		add_action( 'wp_head', array( $this, 'wp_head' ), 1 ); // Add <meta> tags to <head> section
 		add_action( 'tiny_mce_before_init', array( $this, 'tiny_mce_before_init' ), 10, 2 ); // Output TinyMCE Setup function
 		add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_scripts' ) ); // Enqueue all stylesheets (Main Stylesheet, Fonts, etc...)
+		add_filter( 'wp_nav_menu_items', array( $this, 'wp_nav_menu_items' ), 10, 2 ); // Add WooCommerce/EDD cart menu items to top nav menu
 		add_filter( 'the_content_more_link', '__return_false' ); // Remove default more link
 		add_action( 'wp_footer', array( $this, 'wp_footer' ) ); // Responsive navigation functionality
 
@@ -67,6 +68,11 @@ class Simple_Shop {
 		add_action( 'woocommerce_before_shop_loop_item', array( $this, 'woocommerce_before_shop_loop_item' ) );
 		add_action( 'woocommerce_before_shop_loop_item', 'woocommerce_show_product_loop_sale_flash' );
 		add_action( 'woocommerce_after_shop_loop_item', array( $this, 'woocommerce_after_shop_loop_item' ) );
+
+		if( defined( 'WC_VERSION' ) && version_compare( WC_VERSION, '2.3', '>=' ) )
+			add_filter( 'woocommerce_add_to_cart_fragments', array( $this, 'woocommerce_add_to_cart_fragments' ) );
+		else
+			add_filter( 'add_to_cart_fragments', array( $this, 'woocommerce_add_to_cart_fragments' ) );
 	}
 
 
@@ -347,6 +353,47 @@ class Simple_Shop {
 	}
 
 	/**
+	 * This function adds the WooCommerce or Easy Digital Downloads cart icons/items to the top_nav
+	 * menu area as the last item.
+	 */
+	function wp_nav_menu_items( $items, $args, $ajax = false ) {
+
+		// Top Navigation area only
+		if ( ( isset( $ajax ) && $ajax ) || ( property_exists( $args, 'theme_location' ) && $args->theme_location === 'top_nav' ) ) {
+			// WooCommerce
+			if ( class_exists( 'woocommerce' ) ) {
+				$css_class = 'menu-item menu-item-type-cart menu-item-type-woocommerce-cart';
+
+				// Is this the cart page?
+				if ( is_cart() )
+					$css_class .= ' current-menu-item';
+
+				$items .= '<li class="' . esc_attr( $css_class ) . '">';
+					$items .= '<a class="cart-contents" href="' . esc_url( WC()->cart->get_cart_url() ) . '">';
+						$items .= wp_kses_data( WC()->cart->get_cart_total() ) . ' - <span class="count">' .  wp_kses_data( sprintf( _n( '%d item', '%d items', WC()->cart->get_cart_contents_count(), 'simple-shop' ), WC()->cart->get_cart_contents_count() ) ) . '</span>';
+					$items .= '</a>';
+				$items .= '</li>';
+			}
+			// Easy Digital Downloads
+			else if ( class_exists( 'Easy_Digital_Downloads' ) ) {
+				$css_class = 'menu-item menu-item-type-cart menu-item-type-edd-cart';
+
+				// Is this the cart page?
+				if ( edd_is_checkout() )
+					$css_class .= ' current-menu-item';
+
+				$items .= '<li class="' . esc_attr( $css_class ) . '">';
+					$items .= '<a class="cart-contents" href="' . esc_url( edd_get_checkout_uri() ) . '">';
+						$items .= wp_kses_data( edd_cart_subtotal() ) . ' - <span class="count">' .  wp_kses_data( sprintf( _n( '%d item', '%d items', edd_get_cart_quantity(), 'simple-shop' ), edd_get_cart_quantity() ) ) . '</span>';
+					$items .= '</a>';
+				$items .= '</li>';
+			}
+		}
+
+		return $items;
+	}
+
+	/**
 	 * This function outputs the necessary javascript for the responsive menus.
 	 */
 	function wp_footer() {
@@ -529,6 +576,19 @@ class Simple_Shop {
 	?>
 		</section>
 	<?php
+	}
+
+	/**
+	 * This function updates the Top Navigation WooCommerce cart link contents when an item
+	 * is added via AJAX.
+	 */
+	function woocommerce_add_to_cart_fragments( $fragments ) {
+		global $woocommerce;
+
+		// Add our fragment
+		$fragments['li.menu-item-type-woocommerce-cart'] = $this->wp_nav_menu_items( '', new stdClass(), true );
+
+		return $fragments;
 	}
 }
 

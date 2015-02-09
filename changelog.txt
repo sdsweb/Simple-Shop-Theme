@@ -2,9 +2,19 @@
 Theme: Simple Shop
 Author: Slocum Themes/Slocum Design Studio
 Author URI: https://slocumthemes.com/
-Current Version: 1.0.2
+Current Version: 1.0.3
 ==========================================
 
+TODO: Theme Check
+
+1.0.3 // February 03 2015
+-------------------------
+- Add non-minified versions of FitVids and Font Awesome libraries
+- Added attribution for images used in theme screenshot
+- Updated tags
+- Fixed issue with Social Media Widget links in Front Page Sidebar
+- Fixed issue with Customizer primary color (was not previously registered)
+- Added WooCommerce/Easy Digital Downloads cart items to top nav menu area if activated
 
 1.0.2 // January 30 2015
 ------------------------
