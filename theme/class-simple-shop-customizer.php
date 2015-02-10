@@ -6,7 +6,7 @@ class Simple_Shop_Customizer {
 	/**
 	 * @var string
 	 */
-	public $version = '1.0.0';
+	public $version = '1.0.5';
 
 	/**
 	 * @var string, Transient name
@@ -100,12 +100,6 @@ class Simple_Shop_Customizer {
 	 * This function registers various Customizer options for this theme.
 	 */
 	function customize_register( $wp_customize ) {
-		// Load custom Customizer API assets
-		include_once( get_template_directory() . '/customizer/class-simple-shop-customizer-checkbox-control.php' ); // Checkbox Controller
-
-		$sds_theme_options_instance = SDS_Theme_Options_Instance();
-		$sds_theme_options_defaults = $sds_theme_options_instance->get_sds_theme_option_defaults();
-
 		$wp_customize->add_section( 'simple_shop_us', array(
 			'title' => __( 'Upgrade Simple Shop', 'simple-shop' ),
 			'priority' => 1

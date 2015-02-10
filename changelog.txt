@@ -2,11 +2,15 @@
 Theme: Simple Shop
 Author: Slocum Themes/Slocum Design Studio
 Author URI: https://slocumthemes.com/
-Current Version: 1.0.4
+Current Version: 1.0.5
 ==========================================
 
 
-1.0.4 // February 03 2015
+1.0.5 // February 10 2015
+-------------------------
+- Fixed PHP warning for included files that did not exist
+
+1.0.4 // February 09 2015
 -------------------------
 - Updated tags
 
