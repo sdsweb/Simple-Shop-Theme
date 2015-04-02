@@ -396,63 +396,80 @@ if ( ! class_exists( 'SDS_Theme_Options' ) ) {
 		 * This function is the callback for the global content layout settings field.
 		 */
 		function sds_theme_options_content_layout_global_field() {
-			$this->content_layouts_field( 'global', 'Select a content layout that will be applied globally on your site. Select more specific content layouts below.' );
+			$description = __( 'Select a content layout that will be applied globally on your site. Select more specific content layouts below.', 'simple-shop' );
+
+			$this->content_layouts_field( 'global', $description );
 		}
 
 		/**
 		 * This function is the callback for the front page content layout settings field.
 		 */
 		function sds_theme_options_content_layout_front_page_field() {
-			$this->content_layouts_field( 'front_page', 'Select a content layout that will be applied to the front page on your site (if selected in Settings > General).' );
+			$description = __( 'Select a content layout that will be applied to the front page on your site (if selected in Settings &gt; General).', 'simple-shop' );
+
+			$this->content_layouts_field( 'front_page', $description );
 		}
 
 		/**
 		 * This function is the callback for the home (blog) page content layout settings field.
 		 */
 		function sds_theme_options_content_layout_home_field() {
-			$this->content_layouts_field( 'home', 'Select a content layout that will be applied to the blog on your site.' );
+			$description = __( 'Select a content layout that will be applied to the blog on your site.', 'simple-shop' );
+
+			$this->content_layouts_field( 'home', $description );
 		}
 
 		/**
 		 * This function is the callback for the single post content layout settings field.
 		 */
 		function sds_theme_options_content_layout_single_field() {
-			$this->content_layouts_field( 'single', 'Select a content layout that will be applied to single posts on your site.' );
+			$description = __( 'Select a content layout that will be applied to single posts on your site.', 'simple-shop' );
+			$this->content_layouts_field( 'single', $description );
 		}
 
 		/**
 		 * This function is the callback for the single page content layout settings field.
 		 */
 		function sds_theme_options_content_layout_page_field() {
-			$this->content_layouts_field( 'page', 'Select a content layout that will be applied to single pages on your site.' );
+			$description = __( 'Select a content layout that will be applied to single pages on your site.', 'simple-shop' );
+
+			$this->content_layouts_field( 'page', $description );
 		}
 
 		/**
 		 * This function is the callback for the archive content layout settings field.
 		 */
 		function sds_theme_options_content_layout_archive_field() {
-			$this->content_layouts_field( 'archive', 'Select a content layout that will be applied to archives on your site.' );
+			$description = __( 'Select a content layout that will be applied to archives on your site.', 'simple-shop' );
+
+			$this->content_layouts_field( 'archive', $description );
 		}
 
 		/**
 		 * This function is the callback for the category content layout settings field.
 		 */
 		function sds_theme_options_content_layout_category_field() {
-			$this->content_layouts_field( 'category', 'Select a content layout that will be applied to category archives on your site.' );
+			$description = __( 'Select a content layout that will be applied to category archives on your site.', 'simple-shop' );
+
+			$this->content_layouts_field( 'category', $description );
 		}
 
 		/**
 		 * This function is the callback for the tag content layout settings field.
 		 */
 		function sds_theme_options_content_layout_tag_field() {
-			$this->content_layouts_field( 'tag', 'Select a content layout that will be applied to tag archives on your site.' );
+			$description = __( 'Select a content layout that will be applied to tag archives on your site.', 'simple-shop' );
+
+			$this->content_layouts_field( 'tag', $description );
 		}
 
 		/**
 		 * This function is the callback for the 404 (error) content layout settings field.
 		 */
 		function sds_theme_options_content_layout_404_field() {
-			$this->content_layouts_field( '404', 'Select a content layout that will be applied to the 404 error page on your site.' );
+			$description = __( 'Select a content layout that will be applied to the 404 error page on your site.', 'simple-shop' );
+
+			$this->content_layouts_field( '404', $description );
 		}
 
 
@@ -752,12 +769,10 @@ if ( ! class_exists( 'SDS_Theme_Options' ) ) {
 				<div id="sds-theme-options-ads" class="sidebar">
 					<div class="sds-theme-options-ad">
 						<div class="yt-subscribe">
-							<div class="g-ytsubscribe" data-channel="slocumstudio" data-layout="default"></div>
-							<script src="https://apis.google.com/js/plusone.js"></script>
+							<a href="https://www.youtube.com/user/slocumstudio/" class="youtube-follow-button" target="_blank">Slocum Studio YouTube Channel</a>
 						</div>
 
-						<a href="https://twitter.com/slocumstudio/" class="twitter-follow-button" data-show-count="false" data-size="large" data-dnt="true">Follow @slocumstudio</a>
-						<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+						<a href="https://twitter.com/slocumstudio/" class="twitter-follow-button" target="_blank">Follow @slocumstudio</a>
 
 						<br />
 						<br />

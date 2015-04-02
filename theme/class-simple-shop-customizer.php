@@ -345,6 +345,8 @@ class Simple_Shop_Customizer {
 
 			// If we have a primary color selected by the user
 			if ( ( $theme_mod_primary_color = $this->get_theme_mod( 'primary_color', $this->theme_mod_primary_color() ) ) ) {
+				$theme_mod_primary_color = sanitize_hex_color( $theme_mod_primary_color );
+
 				$r .= '/* Primary Color */' . "\n";
 				$r .= 'a,' . "\n";
 				$r .= 'nav.primary-nav-container ul:first-of-type li a:hover,' . "\n";
@@ -458,7 +460,7 @@ class Simple_Shop_Customizer {
 
 		// $color is the saved custom color.
 		// A default has to be specified in style.css. It will not be printed here.
-		$color = '#' . get_background_color();
+		$color = '#' . sanitize_hex_color_no_hash( get_background_color() );
 
 		//if ( $color === get_theme_support( 'custom-background', 'default-color' ) )
 		//	$color = false;
@@ -469,6 +471,7 @@ class Simple_Shop_Customizer {
 		$style = $color ? "background-color: #$color;" : '';
 
 		if ( $background ) {
+			$background = esc_url( $background );
 			$image = " background-image: url('$background');";
 
 			$repeat = get_theme_mod( 'background_repeat', get_theme_support( 'custom-background', 'default-repeat' ) );

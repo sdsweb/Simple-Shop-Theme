@@ -352,10 +352,10 @@ if ( ! function_exists( 'sds_single_image_navigation' ) ) {
 	?>
 		<section class="single-post-navigation post-navigation single-image-navigation image-navigation">
 			<section class="previous-posts">
-				<?php previous_image_link( false, '&laquo; Previous Image' ); ?>
+				<?php previous_image_link( false, __( '&laquo; Previous Image', 'simple-shop' ) ); ?>
 			</section>
 			<section class="next-posts">
-				<?php next_image_link( false, 'Next Image &raquo;' ); ?>
+				<?php next_image_link( false, __( 'Next Image &raquo;', 'simple-shop' ) ); ?>
 			</section>
 		</section>
 	<?php
@@ -369,10 +369,10 @@ if ( ! function_exists( 'sds_copyright' ) ) {
 	function sds_copyright( $theme_name ) {
 	?>
 		<span class="site-copyright">
-			<?php echo apply_filters( 'sds_copyright', 'Copyright &copy; ' . date( 'Y' ) . ' <a href="' . esc_url( home_url() ) . '">' . get_bloginfo( 'name' ) . '</a>. All Rights Reserved.' ); ?>
+			<?php echo apply_filters( 'sds_copyright', sprintf( __( 'Copyright &copy; %1$s <a href="%2$s">%3$s</a>. All Rights Reserved.', 'simple-shop' ), date( 'Y' ), esc_url( home_url() ), get_bloginfo( 'name' ) ) ); ?>
 		</span>
 		<span class="slocum-credit">
-			<?php echo apply_filters( 'sds_copyright_branding', '<a href="http://slocumthemes.com/" target="_blank">' . $theme_name . ' by Slocum Studio</a>', $theme_name ); ?>
+			<?php echo apply_filters( 'sds_copyright_branding', sprintf( __( '<a href="%1$s" target="_blank">%2$s by Slocum Studio</a>', 'simple-shop' ), esc_url( 'http://slocumthemes.com/' ), $theme_name ), $theme_name ); ?>
 		</span>
 	<?php
 	}
@@ -410,17 +410,17 @@ if ( ! function_exists( 'sds_social_media' ) ) {
 					// RSS (use site RSS feed, $url is Boolean this case)
 					if ( $key === 'rss_url_use_site_feed' && $url ) :
 					?>
-						<a href="<?php bloginfo( 'rss2_url' ); ?>" class="rss_url <?php echo $social_font_map['rss_url']; ?>" target="_blank"></a>
+						<a href="<?php bloginfo( 'rss2_url' ); ?>" class="rss_url <?php echo esc_attr( $social_font_map['rss_url'] ); ?>" target="_blank"></a>
 					<?php
 					// RSS (use custom RSS feed)
 					elseif ( $key === 'rss_url' && ! $sds_theme_options['social_media']['rss_url_use_site_feed'] && ! empty( $url ) ) :
 					?>
-						<a href="<?php echo esc_attr( $url ); ?>" class="rss_url <?php echo $social_font_map['rss_url']; ?>" target="_blank"></a>
+						<a href="<?php echo esc_attr( $url ); ?>" class="rss_url <?php echo esc_attr( $social_font_map['rss_url'] ); ?>" target="_blank"></a>
 					<?php
 					// All other networks
 					elseif ( $key !== 'rss_url_use_site_feed' && $key !== 'rss_url' && ! empty( $url ) ) :
 					?>
-						<a href="<?php echo esc_url( $url ); ?>" class="<?php echo $key; ?> <?php echo $social_font_map[$key]; ?>" target="_blank" rel="me"></a>
+						<a href="<?php echo esc_url( $url ); ?>" class="<?php echo esc_attr( $key ); ?> <?php echo esc_attr( $social_font_map[$key] ); ?>" target="_blank" rel="me"></a>
 					<?php
 					endif;
 				endforeach;
@@ -518,7 +518,7 @@ if ( ! function_exists( 'sds_comment' ) ) {
 			// Display trackbacks differently than normal comments.
 		?>
 		<li id="comment-<?php comment_ID(); ?>" <?php comment_class(); ?>>
-			<p><?php _e( 'Pingback:', 'simple-shop' ); ?> <?php comment_author_link(); ?> <?php edit_comment_link( 'Edit', '<span class="ping-meta"><span class="edit-link">', '</span></span>' ); ?></p>
+			<p><?php _e( 'Pingback:', 'simple-shop' ); ?> <?php comment_author_link(); ?> <?php edit_comment_link( __( 'Edit', 'simple-shop' ), '<span class="ping-meta"><span class="edit-link">', '</span></span>' ); ?></p>
 		</li>
 		<?php
 			break;
