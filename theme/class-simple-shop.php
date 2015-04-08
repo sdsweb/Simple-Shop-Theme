@@ -7,7 +7,7 @@ class Simple_Shop {
 	/**
 	 * @var string
 	 */
-	public $version = '1.0.6';
+	public $version = '1.0.7';
 
 	private static $instance; // Keep track of the instance
 
@@ -274,7 +274,7 @@ class Simple_Shop {
 	 * This function enqueues all styles and scripts (Main Stylesheet, Fonts, etc...). Stylesheets can be conditionally included if needed.
 	 */
 	function wp_enqueue_scripts() {
-		global $sds_theme_options;
+		global $sds_theme_options, $is_IE;
 
 		$protocol = is_ssl() ? 'https' : 'http'; // Determine current protocol
 
@@ -300,6 +300,10 @@ class Simple_Shop {
 
 		// Fitvids
 		wp_enqueue_script( 'fitvids', get_template_directory_uri() . '/js/fitvids.js', array( 'jquery' ), $this->version );
+
+		// HTML5 Shiv (IE only)
+		if ( $is_IE )
+			wp_enqueue_script( 'html5-shiv', get_template_directory_uri() . '/js/html5.js', false, $this->version );
 	}
 
 	/**
