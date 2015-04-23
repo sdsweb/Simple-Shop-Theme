@@ -7,7 +7,7 @@ class Simple_Shop {
 	/**
 	 * @var string
 	 */
-	public $version = '1.0.7';
+	public $version = '1.0.8';
 
 	private static $instance; // Keep track of the instance
 
