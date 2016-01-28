@@ -4,7 +4,7 @@
  * Description: Simple Shop is an easy to use storefront for your WooCommerce business. Display your products in a simple, clean, and modern layout. Simple Shop supports a custom homepage, archive pages, and blog posts. This theme is responsive, leverages the front-end Customizer and yet it's lightweight. Now supports live front-end text widget editing via Note. More info - http://wordpress.org/plugins/note/.
  * Author: Slocum Studio
  * Author URI: https://slocumthemes.com/
- * Version: 1.1.1
+ * Version: 1.1.2
  * License: GPL2+
  * License URI: http://www.gnu.org/licenses/gpl.html
  * Tags: dark, one-column, two-columns, right-sidebar, fluid-layout, responsive-layout, custom-colors, custom-menu, editor-style, featured-images, sticky-post, theme-options, threaded-comments, custom-background, custom-menu, editor-style, full-width-template, translation-ready
@@ -71,7 +71,7 @@ q:before, q:after {
 }
 
 ul {
-	list-style: none;
+	padding-left: 25px;
 }
 
 mark {
@@ -1593,7 +1593,6 @@ section.widget.front-page-slider:first-child .block-title {
 .post-container {
 	position: relative;
 	float: left;
-	overflow: hidden;
 	margin: 0 0 0 1.5%;
 	width: 97%;
 	color: #363636;
@@ -1816,6 +1815,10 @@ header.author-header {
 	margin-bottom: 30px;
 	padding-bottom: 20px;
 	width: 30%;
+}
+
+header.author-header h3 {
+	margin: 1.61rem 0;
 }
 
 aside.author-details {
@@ -2881,6 +2884,13 @@ section.copyright {
 	opacity: 0.5;
 }
 
+.woocommerce ul.products li.product a img {
+	width: auto;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 0;
+}
+
 .woocommerce .product img, .woocommerce #content .product img, .woocommerce-page .product img, .woocommerce-page #content .product img {
 	-webkit-border-radius: 5px 5px 0 0;
 	-moz-border-radius: 5px 5px 0 0;
@@ -3261,8 +3271,9 @@ ul.woocommerce-error {
 
 .woocommerce ul.products li .post-image.post-image-placeholder .dashicons {
 	height: 200px;
-	font-size: 110px;
+	font-size: 130px;
 }
+
 .woocommerce ul.products li.product:hover .product-info,
 .woocommerce-page ul.products li.product:hover  .product-info {
 	background: rgba(0, 0, 0, 0.5);
@@ -3320,6 +3331,10 @@ ul.woocommerce-error {
 
 .woocommerce mark {
 	color: #fff;
+}
+
+.woocommerce #content .quantity input.qty, .woocommerce .quantity input.qty, .woocommerce-page #content .quantity input.qty, .woocommerce-page .quantity input.qty{
+	padding: 3px;
 }
 
 /* bbPress/BuddyPress */
@@ -3594,7 +3609,7 @@ ul.woocommerce-error {
 		clear: none !important;
 	}
 	
-	.post-content .post-inner-content,{
+	.post-content .post-inner-content {
 		padding: 0 5%;
 	}
 	
@@ -3608,6 +3623,27 @@ ul.woocommerce-error {
 		margin-left: 0;
 		margin-right: 0;
 		margin-bottom: 20px;
+	}
+
+	.tabs.wc-tabs li{
+		width: 100%;
+	}
+
+	nav.primary-nav-container {
+		display: block;
+		margin-top: 40px;
+		margin-bottom: 28px;
+	}
+
+	section.logo-box,
+	nav.primary-nav-container .primary-nav-button,
+	nav.primary-nav-container ul:first-of-type {
+		float: none;
+	}
+
+	nav.primary-nav-container ul:first-of-type,
+	.cols-2 .post-container {
+		width: 100%;
 	}
 }
 

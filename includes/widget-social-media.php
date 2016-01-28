@@ -1,14 +1,15 @@
 <?php
 
-// Exit if accessed directly
-if ( !defined( 'ABSPATH' ) ) exit;
+// Bail if accessed directly
+if ( ! defined( 'ABSPATH' ) )
+	exit;
 
 /**
  * SDS Social Media Widget
  *
  * Description: This Class extends WP_Widget to create a social media widget for display in sidebars.
  *
- * @version 1.0
+ * @version 1.4.1
  */
 if ( ! class_exists( 'SDS_Social_Media_Widget' ) ) {
 	class SDS_Social_Media_Widget extends WP_Widget {
@@ -17,7 +18,7 @@ if ( ! class_exists( 'SDS_Social_Media_Widget' ) ) {
 		 */
 		function __construct() {
 			$widget_ops = array( 'classname' => 'widget-sds-social-media sds-social-media-widget', 'description' => __( 'Display social media icons linking to your networks specified in Theme Options.', 'simple-shop' ) );
-			$this->WP_Widget( 'sds-social-media-widget', __( 'Social Media Widget' ,'simple-shop' ), $widget_ops );
+			parent::__construct( 'sds-social-media-widget', __( 'Social Media Widget', 'simple-shop' ), $widget_ops );
 		}
 
 		/**

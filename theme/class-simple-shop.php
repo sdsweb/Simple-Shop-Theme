@@ -7,7 +7,7 @@ class Simple_Shop {
 	/**
 	 * @var string
 	 */
-	public $version = '1.1.1';
+	public $version = '1.1.2';
 
 	private static $instance; // Keep track of the instance
 
@@ -38,7 +38,7 @@ class Simple_Shop {
 		add_action( 'wp_footer', array( $this, 'wp_footer' ) ); // Responsive navigation functionality
 
 		// Gravity Forms
-		add_filter( 'gform_field_input', array( $this, 'gform_field_input' ), 10, 5 ); // Add placholder to newsletter form
+		add_filter( 'gform_field_input', array( $this, 'gform_field_input' ), 10, 5 ); // Add placeholder to newsletter form
 		add_filter( 'gform_confirmation', array( $this, 'gform_confirmation' ), 10, 4 ); // Change confirmation message on newsletter form
 
 		// WooCommerce
@@ -278,7 +278,7 @@ class Simple_Shop {
 
 		// Enqueue the child theme stylesheet only if a child theme is active
 		if ( is_child_theme() )
-			wp_enqueue_style( 'simple-shop-child', get_stylesheet_uri(), array( 'simple-shop' ), $this->version );
+			wp_enqueue_style( 'simple-shop-child', get_stylesheet_uri(), ( $selected_color_scheme = sds_get_color_scheme() ) ? array( 'simple-shop' , $selected_color_scheme['deps'] . '-' . $sds_theme_options['color_scheme'] ) : array( 'simple-shop' ), $this->version );
 
 		// Droid Sans (include only if a web font is not selected in Theme Options)
 		if ( ! function_exists( 'sds_web_fonts' ) || empty( $sds_theme_options['web_font'] ) )

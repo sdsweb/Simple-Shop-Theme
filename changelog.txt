@@ -2,12 +2,23 @@
 Theme: Simple Shop
 Author: Slocum Themes/Slocum Design Studio
 Author URI: https://slocumthemes.com/
-Current Version: 1.1.1
+Current Version: 1.1.2
 ==========================================
 
 
-1.1.1 // April 23 2015
+1.1.2 // January 28 2016
 ------------------------
+- Adjusted WooCommerce CSS to ensure better compatibility with WooCommerce 2.5
+- Added POT file for translations
+- Fixed potential PHP warning in Customizer
+- Ported various settings to the Customizer that previously appeared in Theme Options
+- Updated to SDS Core 1.4.2
+- Fixed display issue with unordered lists
+- Fixed hidden overflow issue on post container
+- Ensured child theme had color scheme CSS file as a dependency
+
+1.1.1 // April 23 2015
+----------------------
 - Updated TGM Plugin Activation to version 2.4.1
 
 1.1.0 // April 16 2015
