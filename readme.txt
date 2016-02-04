@@ -81,3 +81,9 @@ Attribution:
  * License: GPL Compatible (CC0; public domain)
  * Copyright: Ryan McGuire, http://www.mcguiremade.com/, http://www.gratisography.com/
  */
+
+/**
+ * SDS Core - /includes/
+ * License: GPL2
+ * Copyright: Slocum Design Studio, http://slocumstudio.com/
+ */
