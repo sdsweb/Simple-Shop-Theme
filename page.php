@@ -7,7 +7,7 @@ get_header(); ?>
 	<!-- Home Content -->
 	<section class="content-container">
 
-		<article class="content">
+		<article id="content-container" class="content">
 
 			<section class="post-container">
 
