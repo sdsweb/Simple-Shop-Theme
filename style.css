@@ -792,6 +792,7 @@ nav.top-nav ul li:hover > a {
 
 nav.top-nav ul li:hover > ul {
 	display: block;
+	padding: 0;
 }
 
 nav.top-nav ul > li ul li {
@@ -1967,6 +1968,10 @@ section.widget #searchform input.submit {
 
 section.widget ul.children, section.widget ol.children {
 	padding-left: 15px;
+}
+
+section.widget ol {
+	padding-left: 24px;
 }
 
 /* -----  Calendar  ------*/
