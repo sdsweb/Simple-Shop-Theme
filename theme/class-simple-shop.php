@@ -62,11 +62,7 @@ class Simple_Shop {
 		add_action( 'woocommerce_before_shop_loop_item', array( $this, 'woocommerce_before_shop_loop_item' ) );
 		add_action( 'woocommerce_before_shop_loop_item', 'woocommerce_show_product_loop_sale_flash' );
 		add_action( 'woocommerce_after_shop_loop_item', array( $this, 'woocommerce_after_shop_loop_item' ) );
-
-		if ( defined( 'WC_VERSION' ) && version_compare( WC_VERSION, '2.3', '>=' ) )
-			add_filter( 'woocommerce_add_to_cart_fragments', array( $this, 'woocommerce_add_to_cart_fragments' ) );
-		else
-			add_filter( 'add_to_cart_fragments', array( $this, 'woocommerce_add_to_cart_fragments' ) );
+		add_filter( 'woocommerce_add_to_cart_fragments', array( $this, 'woocommerce_add_to_cart_fragments' ) );
 	}
 
 
@@ -88,6 +84,9 @@ class Simple_Shop {
 
 		// WooCommerce Support
 		add_theme_support( 'woocommerce' );
+		add_theme_support( 'wc-product-gallery-zoom' );
+		add_theme_support( 'wc-product-gallery-lightbox' );
+		add_theme_support( 'wc-product-gallery-slider' );
 
 		// Change default core markup for search form, comment form, and comments, etc... to HTML5
 		add_theme_support( 'html5', array(
@@ -533,8 +532,6 @@ class Simple_Shop {
 	 * is added via AJAX.
 	 */
 	function woocommerce_add_to_cart_fragments( $fragments ) {
-		global $woocommerce;
-
 		// Add our fragment
 		$fragments['li.menu-item-type-woocommerce-cart'] = $this->wp_nav_menu_items( '', new stdClass(), true );
 

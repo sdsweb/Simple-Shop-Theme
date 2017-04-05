@@ -693,8 +693,9 @@ nav.top-nav {
 }
 
 nav.top-nav ul {
-	margin: 10px 0; /* Changed from em's to px due to CSS3 transition, was: 0.25em 0*/
 	width: 100%;
+	margin: 10px 0; /* Changed from em's to px due to CSS3 transition, was: 0.25em 0*/
+	padding: 0;
 	text-align: center;
 }
 
@@ -791,8 +792,8 @@ nav.top-nav ul li:hover > a {
 }
 
 nav.top-nav ul li:hover > ul {
-	display: block;
 	padding: 0;
+	display: block;
 }
 
 nav.top-nav ul > li ul li {
@@ -856,7 +857,7 @@ section.logo-box {
 
 header nav.primary-nav-container {
 	position: relative;
-	z-index: 5;
+	z-index: 15;
 }
 
 nav.primary-nav-container {
@@ -873,7 +874,11 @@ nav.primary-nav-container {
 	text-align: center;
 }
 
-nav.primary-nav-container ul:first-of-type > li {
+nav.primary-nav-container ul {
+	padding: 0;
+}
+
+nav.primary-nav-container ul > li {
 	position: relative;
 	display: inline-block;
 	margin: 0;
@@ -881,7 +886,7 @@ nav.primary-nav-container ul:first-of-type > li {
 	text-align: center;
 }
 
-nav.primary-nav-container ul:first-of-type li a {
+nav.primary-nav-container ul li a {
 	display: block;
 	margin: 0;
 	padding: 15px 25px 15px;
@@ -897,12 +902,12 @@ nav.primary-nav-container ul:first-of-type li a {
 	transition: all .3s ease-in-out;
 }
 
-nav.primary-nav-container ul:first-of-type li a:hover {
+nav.primary-nav-container ul li a:hover {
 	background: rgba(0, 0, 0, .3);
 	color: #1fb25a;
 }
 
-nav.primary-nav-container ul:first-of-type > li ul {
+nav.primary-nav-container ul > li ul {
 	position: absolute;
 	top: 100%;
 	display: none;
@@ -912,16 +917,16 @@ nav.primary-nav-container ul:first-of-type > li ul {
 }
 
 /* Third Level */
-nav.primary-nav-container ul:first-of-type > li > ul ul {
+nav.primary-nav-container ul > li > ul ul {
 	top: 0;
 	left: 100%;
 }
 
-nav.primary-nav-container ul:first-of-type > li ul li ul li {
+nav.primary-nav-container ul > li ul li ul li {
 	float: left;
 }
 
-nav.primary-nav-container ul:first-of-type > li ul li {
+nav.primary-nav-container ul > li ul li {
 	position: relative;
 	display: block;
 	float: none;
@@ -929,7 +934,7 @@ nav.primary-nav-container ul:first-of-type > li ul li {
 	width: auto;
 }
 
-nav.primary-nav-container ul:first-of-type > li ul li a {
+nav.primary-nav-container ul > li ul li a {
 	display: block;
 	float: none;
 	margin-bottom: -1px;
@@ -940,16 +945,17 @@ nav.primary-nav-container ul:first-of-type > li ul li a {
 	white-space: nowrap;
 }
 
-nav.primary-nav-container ul:first-of-type > li ul li:last-child a {
+nav.primary-nav-container ul > li ul li:last-child a {
 	margin-bottom: 0;
 	border-bottom: none;
 }
 
-nav.primary-nav-container ul:first-of-type li:hover > ul {
+nav.primary-nav-container ul li:hover > ul {
+	padding: 0;
 	display: block;
 }
 
-nav.primary-nav-container ul:first-of-type li a:hover {
+nav.primary-nav-container ul li a:hover {
 	background-color: rgba(0, 0, 0, .35);
 }
 
@@ -1107,9 +1113,9 @@ nav.primary-nav-container ul:first-of-type li a:hover {
 	clear: both;
 }
 
-.woocommerce ul.product_list_widget li.block-3 {
+/*.woocommerce ul.product_list_widget li.block-3 {
 	float: none;
-}
+}*/
 
 .block-3:hover .product-info, .block-2:hover .calltoaction, .block-2:hover .post-info, .block-3:hover .post-info {
 	background: rgba(0, 0, 0, .5);
@@ -1490,7 +1496,7 @@ section.widget.front-page-slider:first-child .block-title {
 }
 
 .post-image.post-image-placeholder a {
-	color: #333;
+	color: #999;
 }
 
 .has-image-placeholder:hover .post-image a {
@@ -2958,7 +2964,12 @@ section.copyright {
 	width: 47%;
 }
 
-.woocommerce div.product div.images img, .woocommerce #content div.product div.images img, .woocommerce-page div.product div.images img, .woocommerce-page #content div.product div.images img {
+.woocommerce div.product div.images img,
+.woocommerce #content div.product div.images img,
+.woocommerce-page div.product div.images img,
+.woocommerce-page #content div.product div.images img,
+.woocommerce-product-gallery__image,
+.pswp__img {
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
@@ -3438,7 +3449,7 @@ ul.woocommerce-error {
 		width: 97%;
 	}
 
-	nav.primary-nav-container ul:first-of-type {
+	nav.primary-nav-container ul {
 		margin-top: 0;
 	}
 
@@ -3455,7 +3466,7 @@ ul.woocommerce-error {
 
 	
 
-	nav.primary-nav-container ul:first-of-type {
+	nav.primary-nav-container ul {
 		float: left;
 		overflow: hidden;
 		max-height: 0;
@@ -3477,7 +3488,7 @@ ul.woocommerce-error {
 		width: 100%;
 	}
 
-	nav.primary-nav-container ul:first-of-type li {
+	nav.primary-nav-container ul li {
 		position: static;
 		display: block;
 		float: none;
@@ -3486,15 +3497,15 @@ ul.woocommerce-error {
 		text-align: left;
 	}
 
-	nav.primary-nav-container ul:first-of-type li a {
+	nav.primary-nav-container ul li a {
 		line-height: 2;
 	}
 
-	nav.primary-nav-container ul:first-of-type li a:hover {
+	nav.primary-nav-container ul li a:hover {
 		background: transparent;
 	}
 
-	nav.primary-nav-container ul:first-of-type > li .sub-menu {
+	nav.primary-nav-container ul > li .sub-menu {
 		position: static;
 		z-index: 0;
 		display: block;
@@ -3511,7 +3522,7 @@ ul.woocommerce-error {
 		top: 0;
 	}
 
-	nav.primary-nav-container ul:first-of-type li .sub-menu li a {
+	nav.primary-nav-container ul li .sub-menu li a {
 		border-bottom: none;
 	}
 
@@ -3642,11 +3653,11 @@ ul.woocommerce-error {
 
 	section.logo-box,
 	nav.primary-nav-container .primary-nav-button,
-	nav.primary-nav-container ul:first-of-type {
+	nav.primary-nav-container ul {
 		float: none;
 	}
 
-	nav.primary-nav-container ul:first-of-type,
+	nav.primary-nav-container ul,
 	.cols-2 .post-container {
 		width: 100%;
 	}
