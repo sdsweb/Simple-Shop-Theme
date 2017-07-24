@@ -1,3 +1,13 @@
+Readme:
+-------
+
+Social Media - Use the Social Media widget to display your social media in any sidebar.
+
+
+
+Attribution:
+------------
+
 /**
  * Font Awesome Web Font - http://fontawesome.io/
  * License: GPL Compatible (http://fontawesome.io/license/)
@@ -70,4 +80,10 @@
  * Theme Screenshot Image - http://www.gratisography.com/pictures/169_1.jpg
  * License: GPL Compatible (CC0; public domain)
  * Copyright: Ryan McGuire, http://www.mcguiremade.com/, http://www.gratisography.com/
+ */
+
+/**
+ * SDS Core - /includes/
+ * License: GPL2
+ * Copyright: Slocum Design Studio, http://slocumstudio.com/
  */

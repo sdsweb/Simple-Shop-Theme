@@ -6,7 +6,7 @@ class Simple_Shop_Customizer {
 	/**
 	 * @var string
 	 */
-	public $version = '1.0.5';
+	public $version = '1.1.2';
 
 	/**
 	 * @var string, Transient name
@@ -115,7 +115,7 @@ class Simple_Shop_Customizer {
 		);
 
 		$wp_customize->add_control(
-			new WP_Customize_US_Control(
+			new SDS_Theme_Options_Customize_US_Control(
 				$wp_customize,
 				'simple_shop_us',
 				array(
@@ -147,25 +147,28 @@ class Simple_Shop_Customizer {
 			/**
 			 * Logo/Site Title & Tagline Section
 			 */
-			$title_tagline_section = $wp_customize->get_section( 'title_tagline' ); // Get Section
-			$title_tagline_section->panel = 'simple_shop_general_design'; // Add panel
-			$title_tagline_section->priority = 10; // Adjust Priority
+			if ( $title_tagline_section = $wp_customize->get_section( 'title_tagline' ) ) { // Get Section
+				$title_tagline_section->panel    = 'simple_shop_general_design'; // Add panel
+				$title_tagline_section->priority = 10; // Adjust Priority
+			}
 
 
 			/**
 			 * Static Front Page Section
 			 */
-			$static_front_page_section = $wp_customize->get_section( 'static_front_page' ); // Get Section
-			$static_front_page_section->panel = 'simple_shop_general_design'; // Add panel
-			$static_front_page_section->priority = 20; // Adjust Priority
+			if ( $static_front_page_section = $wp_customize->get_section( 'static_front_page' ) ) { // Get Section
+				$static_front_page_section->panel = 'simple_shop_general_design'; // Add panel
+				$static_front_page_section->priority = 20; // Adjust Priority
+			}
 
 
 			/**
 			 * Nav Section
 			 */
-			$static_front_page_section = $wp_customize->get_section( 'nav' ); // Get Section
-			$static_front_page_section->panel = 'simple_shop_general_design'; // Add panel
-			$static_front_page_section->priority = 30; // Adjust Priority
+			if ( $nav_section = $wp_customize->get_section( 'nav' ) ) { // Get Section
+				$nav_section->panel = 'simple_shop_general_design'; // Add panel
+				$nav_section->priority = 30; // Adjust Priority
+			}
 		}
 
 		/**
@@ -192,48 +195,54 @@ class Simple_Shop_Customizer {
 			/**
 			 * Background Color
 			 */
-			$background_color_control = $wp_customize->get_control( 'background_color' ); // Get Control
-			$background_color_control->section = 'simple_shop_background_body'; // Adjust Section
-			$background_color_control->priority = 10; // Adjust Priority
+			if ( $background_color_control = $wp_customize->get_control( 'background_color' ) ) { // Get Control
+				$background_color_control->section = 'simple_shop_background_body'; // Adjust Section
+				$background_color_control->priority = 10; // Adjust Priority
+			}
 
 			/**
 			 * Background Image
 			 */
-			$background_image_control = $wp_customize->get_control( 'background_image' ); // Get Control
-			$background_image_control->section = 'simple_shop_background_body'; // Adjust Section
-			$background_image_control->priority = 20; // Adjust Priority
-			$wp_customize->remove_section( 'background_image' ); // Remove Section
+			if ( $background_image_control = $wp_customize->get_control( 'background_image' ) ) { // Get Control
+				$background_image_control->section = 'simple_shop_background_body'; // Adjust Section
+				$background_image_control->priority = 20; // Adjust Priority
+				$wp_customize->remove_section( 'background_image' ); // Remove Section
+			}
 
 			/**
 			 * Background Repeat
 			 */
-			$background_repeat_control = $wp_customize->get_control( 'background_repeat' ); // Get Control
-			$background_repeat_control->section = 'simple_shop_background_body'; // Adjust Section
-			$background_repeat_control->priority = 30; // Adjust Priority
+			if ( $background_repeat_control = $wp_customize->get_control( 'background_repeat' ) ) { // Get Control
+				$background_repeat_control->section = 'simple_shop_background_body'; // Adjust Section
+				$background_repeat_control->priority = 30; // Adjust Priority
+			}
 
 			/**
 			 * Background Position X
 			 */
-			$background_position_x_control = $wp_customize->get_control( 'background_position_x' ); // Get Control
-			$background_position_x_control->section = 'simple_shop_background_body'; // Adjust Section
-			$background_position_x_control->priority = 40; // Adjust Priority
+			if ( $background_position_x_control = $wp_customize->get_control( 'background_position_x' ) ) { // Get Control
+				$background_position_x_control->section = 'simple_shop_background_body'; // Adjust Section
+				$background_position_x_control->priority = 40; // Adjust Priority
+			}
 
 			/**
 			 * Background Attachment
 			 */
-			$background_attachment_control = $wp_customize->get_control( 'background_attachment' ); // Get Control
-			$background_attachment_control->section = 'simple_shop_background_body'; // Adjust Section
-			$background_attachment_control->priority = 50; // Adjust Priority
+			if ( $background_attachment_control = $wp_customize->get_control( 'background_attachment' ) ) { // Get Control
+				$background_attachment_control->section = 'simple_shop_background_body'; // Adjust Section
+				$background_attachment_control->priority = 50; // Adjust Priority
+			}
 		}
 
 
 		/**
 		 * Colors Section
 		 */
-		$colors_section = $wp_customize->get_section( 'colors' ); // Get Section
-		$colors_section->title = __( 'Primary Theme Color', 'simple-shop' ); // Adjust Title
-		$colors_section->panel = 'simple_shop_colors_and_background'; // Adjust Panel
-		$colors_section->priority = 10; // Adjust Priority (Top)
+		if ( $colors_section = $wp_customize->get_section( 'colors' ) ) { // Get Section
+			$colors_section->title = __( 'Primary Theme Color', 'simple-shop' ); // Adjust Title
+			$colors_section->panel = 'simple_shop_colors_and_background'; // Adjust Panel
+			$colors_section->priority = 10; // Adjust Priority (Top)
+		}
 
 
 		/**
@@ -345,6 +354,8 @@ class Simple_Shop_Customizer {
 
 			// If we have a primary color selected by the user
 			if ( ( $theme_mod_primary_color = $this->get_theme_mod( 'primary_color', $this->theme_mod_primary_color() ) ) ) {
+				$theme_mod_primary_color = simple_shop_sanitize_hex_color( $theme_mod_primary_color );
+
 				$r .= '/* Primary Color */' . "\n";
 				$r .= 'a,' . "\n";
 				$r .= 'nav.primary-nav-container ul:first-of-type li a:hover,' . "\n";
@@ -458,7 +469,7 @@ class Simple_Shop_Customizer {
 
 		// $color is the saved custom color.
 		// A default has to be specified in style.css. It will not be printed here.
-		$color = '#' . get_background_color();
+		$color = '#' . sanitize_hex_color_no_hash( get_background_color() );
 
 		//if ( $color === get_theme_support( 'custom-background', 'default-color' ) )
 		//	$color = false;
@@ -469,6 +480,7 @@ class Simple_Shop_Customizer {
 		$style = $color ? "background-color: #$color;" : '';
 
 		if ( $background ) {
+			$background = esc_url( $background );
 			$image = " background-image: url('$background');";
 
 			$repeat = get_theme_mod( 'background_repeat', get_theme_support( 'custom-background', 'default-repeat' ) );

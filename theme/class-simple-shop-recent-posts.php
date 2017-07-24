@@ -8,14 +8,14 @@
  */
 class Simple_Shop_Recent_Posts extends WP_Widget {
 	public function __construct() {
-		$widget_ops = array('classname' => 'simple-shop-recent-posts', 'description' => __( "Your site&#8217;s most recent Posts.") );
-		parent::__construct('simple-shop-recent-posts', __('Simple Shop Recent Posts', 'simple-shop' ), $widget_ops);
+		$widget_ops = array( 'classname' => 'simple-shop-recent-posts', 'description' => __( 'Your site&#8217;s most recent Posts.', 'simple-shop' ) );
+		parent::__construct( 'simple-shop-recent-posts', __( 'Simple Shop Recent Posts', 'simple-shop' ), $widget_ops );
 		$this->alt_option_name = 'sds_recent_entries';
-		add_action( 'save_post', array($this, 'flush_widget_cache') );
-		add_action( 'deleted_post', array($this, 'flush_widget_cache') );
-		add_action( 'switch_theme', array($this, 'flush_widget_cache') );
+		add_action( 'save_post', array( $this, 'flush_widget_cache' ) );
+		add_action( 'deleted_post', array( $this, 'flush_widget_cache' ) );
+		add_action( 'switch_theme', array( $this, 'flush_widget_cache' ) );
 	}
-	public function widget($args, $instance) {
+	public function widget( $args, $instance ) {
 		$cache = array();
 		if ( ! $this->is_preview() ) {
 			$cache = wp_cache_get( 'simple_shop_widget_recent_posts', 'widget' );
@@ -31,7 +31,7 @@ class Simple_Shop_Recent_Posts extends WP_Widget {
 			return;
 		}
 		ob_start();
-		$title = ( ! empty( $instance['title'] ) ) ? $instance['title'] : __( 'Recent Posts' );
+		$title = ( ! empty( $instance['title'] ) ) ? $instance['title'] : __( 'Recent Posts', 'simple-shop' );
 		/** This filter is documented in wp-includes/default-widgets.php */
 		$title = apply_filters( 'widget_title', $title, $instance, $this->id_base );
 		$number = ( ! empty( $instance['number'] ) ) ? absint( $instance['number'] ) : 5;
@@ -93,31 +93,27 @@ class Simple_Shop_Recent_Posts extends WP_Widget {
 	}
 	public function update( $new_instance, $old_instance ) {
 		$instance = $old_instance;
-		$instance['title'] = strip_tags($new_instance['title']);
+		$instance['title'] = strip_tags( $new_instance['title'] );
 		$instance['number'] = (int) $new_instance['number'];
-		$instance['show_date'] = isset( $new_instance['show_date'] ) ? (bool) $new_instance['show_date'] : false;
+		$instance['show_date'] = isset( $new_instance['show_date'] ) ? ( bool ) $new_instance['show_date'] : false;
 		$this->flush_widget_cache();
 		$alloptions = wp_cache_get( 'alloptions', 'options' );
-		if ( isset($alloptions['widget_recent_entries']) )
-			delete_option('widget_recent_entries');
+		if ( isset( $alloptions['widget_recent_entries'] ) )
+			delete_option( 'widget_recent_entries' );
 		return $instance;
 	}
 	public function flush_widget_cache() {
-		wp_cache_delete('simple_shop_widget_recent_posts', 'widget');
+		wp_cache_delete( 'simple_shop_widget_recent_posts', 'widget' );
 	}
 	public function form( $instance ) {
 		$title     = isset( $instance['title'] ) ? esc_attr( $instance['title'] ) : '';
 		$number    = isset( $instance['number'] ) ? absint( $instance['number'] ) : 5;
-		//$show_date = isset( $instance['show_date'] ) ? (bool) $instance['show_date'] : false;
-		?>
-		<p><label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
+	?>
+		<p><label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', 'simple-shop' ); ?></label>
 			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $title; ?>" /></p>
 
-		<p><label for="<?php echo $this->get_field_id( 'number' ); ?>"><?php _e( 'Number of posts to show:' ); ?></label>
+		<p><label for="<?php echo $this->get_field_id( 'number' ); ?>"><?php _e( 'Number of posts to show:', 'simple-shop' ); ?></label>
 			<input id="<?php echo $this->get_field_id( 'number' ); ?>" name="<?php echo $this->get_field_name( 'number' ); ?>" type="text" value="<?php echo $number; ?>" size="3" /></p>
-
-		<!--<p><input class="checkbox" type="checkbox" --><?php //checked( $show_date ); ?><!-- id="--><?php //echo $this->get_field_id( 'show_date' ); ?><!--" name="--><?php //echo $this->get_field_name( 'show_date' ); ?><!--" />-->
-		<!--	<label for="--><?php //echo $this->get_field_id( 'show_date' ); ?><!--">--><?php //_e( 'Display post date?' ); ?><!--</label></p>-->
 	<?php
 	}
 }

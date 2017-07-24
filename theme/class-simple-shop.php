@@ -7,14 +7,9 @@ class Simple_Shop {
 	/**
 	 * @var string
 	 */
-	public $version = '1.0.5';
+	public $version = '1.1.3';
 
 	private static $instance; // Keep track of the instance
-
-	/**
-	 * @var EDD_SL_Theme_Updater, Instance of the EDD Software Licensing Theme Updater class
-	 */
-	protected $_updater;
 
 	/**
 	 * Function used to create instance of class.
@@ -37,14 +32,13 @@ class Simple_Shop {
 		add_action( 'dynamic_sidebar_params', array( $this, 'dynamic_sidebar_params' ) ); // Filter Dynamic Sidebar Parameters (Note Widgets)
 		add_action( 'pre_get_posts', array( $this, 'pre_get_posts' ) ); // Used to enqueue editor styles based on post type
 		add_action( 'wp_head', array( $this, 'wp_head' ), 1 ); // Add <meta> tags to <head> section
-		add_action( 'tiny_mce_before_init', array( $this, 'tiny_mce_before_init' ), 10, 2 ); // Output TinyMCE Setup function
 		add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_scripts' ) ); // Enqueue all stylesheets (Main Stylesheet, Fonts, etc...)
 		add_filter( 'wp_nav_menu_items', array( $this, 'wp_nav_menu_items' ), 10, 2 ); // Add WooCommerce/EDD cart menu items to top nav menu
 		add_filter( 'the_content_more_link', '__return_false' ); // Remove default more link
 		add_action( 'wp_footer', array( $this, 'wp_footer' ) ); // Responsive navigation functionality
 
 		// Gravity Forms
-		add_filter( 'gform_field_input', array( $this, 'gform_field_input' ), 10, 5 ); // Add placholder to newsletter form
+		add_filter( 'gform_field_input', array( $this, 'gform_field_input' ), 10, 5 ); // Add placeholder to newsletter form
 		add_filter( 'gform_confirmation', array( $this, 'gform_confirmation' ), 10, 4 ); // Change confirmation message on newsletter form
 
 		// WooCommerce
@@ -68,11 +62,7 @@ class Simple_Shop {
 		add_action( 'woocommerce_before_shop_loop_item', array( $this, 'woocommerce_before_shop_loop_item' ) );
 		add_action( 'woocommerce_before_shop_loop_item', 'woocommerce_show_product_loop_sale_flash' );
 		add_action( 'woocommerce_after_shop_loop_item', array( $this, 'woocommerce_after_shop_loop_item' ) );
-
-		if( defined( 'WC_VERSION' ) && version_compare( WC_VERSION, '2.3', '>=' ) )
-			add_filter( 'woocommerce_add_to_cart_fragments', array( $this, 'woocommerce_add_to_cart_fragments' ) );
-		else
-			add_filter( 'add_to_cart_fragments', array( $this, 'woocommerce_add_to_cart_fragments' ) );
+		add_filter( 'woocommerce_add_to_cart_fragments', array( $this, 'woocommerce_add_to_cart_fragments' ) );
 	}
 
 
@@ -94,6 +84,9 @@ class Simple_Shop {
 
 		// WooCommerce Support
 		add_theme_support( 'woocommerce' );
+		add_theme_support( 'wc-product-gallery-zoom' );
+		add_theme_support( 'wc-product-gallery-lightbox' );
+		add_theme_support( 'wc-product-gallery-slider' );
 
 		// Change default core markup for search form, comment form, and comments, etc... to HTML5
 		add_theme_support( 'html5', array(
@@ -216,16 +209,13 @@ class Simple_Shop {
 	function simple_shop_us_metabox( $post ) {
 		// Get the post type label
 		$post_type = get_post_type_object( $post->post_type );
-		$label = ( isset( $post_type->labels->singular_name ) ) ? $post_type->labels->singular_name : __( 'Post' );
+		$label = ( isset( $post_type->labels->singular_name ) ) ? $post_type->labels->singular_name : __( 'Post', 'simple-shop' );
 
 		echo '<p class="howto">';
 		printf(
-			__( 'Looking to configure a unique layout for this %1$s? %2$s.', 'simple-shop' ),
+			__( 'Looking to configure a unique layout for this %1$s? <a href="%2$s" target="_blank">Upgrade to Pro</a>.', 'simple-shop' ),
 			esc_html( strtolower( $label ) ),
-			sprintf(
-				'<a href="%1$s" target="_blank">Upgrade to Pro</a>',
-				esc_url( sds_get_pro_link( 'metabox-layout-settings' ) )
-			)
+			esc_url( sds_get_pro_link( 'metabox-layout-settings' ) )
 		);
 		echo '</p>';
 	}
@@ -275,56 +265,10 @@ class Simple_Shop {
 	}
 
 	/**
-	 * This function prints scripts after TinyMCE has been initialized for dynamic CSS in the
-	 * content editor based on page template dropdown selection.
-	 */
-	function tiny_mce_before_init( $mceInit, $editor_id ) {
-		$max_width = 950;
-
-		// Only on the admin 'content' editor
-		if ( is_admin() && ! isset( $mceInit['setup'] ) && $editor_id === 'content' ) {
-			$mceInit['setup'] = 'function( editor ) {
-				// Editor init
- 				editor.on( "init", function( e ) {
- 					// Only on the "content" editor (other editors can inherit the setup function on init)
- 					if( editor.id === "content" ) {
-						var $page_template = jQuery( "#page_template" ),
-							full_width_templates = ["template-full-width.php", "template-landing-page.php"],
-							$content_editor_head = jQuery( editor.getDoc() ).find( "head" );
-
-						// If the page template dropdown exists
-						if ( $page_template.length ) {
-							// When the page template dropdown changes
-							$page_template.on( "change", function() {
-								// Is this a full width template?
-								if ( full_width_templates.indexOf( $page_template.val() ) !== -1 ) {
-									// Add dynamic CSS
-									if( $content_editor_head.find( "#' . get_template() . '-editor-css" ).length === 0 ) {
-										$content_editor_head.append( "<style type=\'text/css\' id=\'' . get_template() . '-editor-css\'> body, body.wp-autoresize { max-width: ' . $max_width . 'px; } </style>" );
-									}
-								}
-								else {
-									// Add dynamic CSS
-									$content_editor_head.find( "#' . get_template() . '-editor-css" ).remove();
-
-									// If the full width style was added on TinyMCE Init, remove it
-									$content_editor_head.find( "link[href=\'' . get_template_directory_uri() . '/css/editor-style-full-width.css\']" ).remove();
-								}
-							} );
-						}
-					}
-				} );
-			}';
-		}
-
-		return $mceInit;
-	}
-
-	/**
 	 * This function enqueues all styles and scripts (Main Stylesheet, Fonts, etc...). Stylesheets can be conditionally included if needed.
 	 */
 	function wp_enqueue_scripts() {
-		global $sds_theme_options;
+		global $sds_theme_options, $is_IE;
 
 		$protocol = is_ssl() ? 'https' : 'http'; // Determine current protocol
 
@@ -333,7 +277,7 @@ class Simple_Shop {
 
 		// Enqueue the child theme stylesheet only if a child theme is active
 		if ( is_child_theme() )
-			wp_enqueue_style( 'simple-shop-child', get_stylesheet_uri(), array( 'simple-shop' ), $this->version );
+			wp_enqueue_style( 'simple-shop-child', get_stylesheet_uri(), ( $selected_color_scheme = sds_get_color_scheme() ) ? array( 'simple-shop' , $selected_color_scheme['deps'] . '-' . $sds_theme_options['color_scheme'] ) : array( 'simple-shop' ), $this->version );
 
 		// Droid Sans (include only if a web font is not selected in Theme Options)
 		if ( ! function_exists( 'sds_web_fonts' ) || empty( $sds_theme_options['web_font'] ) )
@@ -350,6 +294,10 @@ class Simple_Shop {
 
 		// Fitvids
 		wp_enqueue_script( 'fitvids', get_template_directory_uri() . '/js/fitvids.js', array( 'jquery' ), $this->version );
+
+		// HTML5 Shiv (IE only)
+		if ( $is_IE )
+			wp_enqueue_script( 'html5-shiv', get_template_directory_uri() . '/js/html5.js', false, $this->version );
 	}
 
 	/**
@@ -404,11 +352,11 @@ class Simple_Shop {
 					// Primary Nav
 					$( '.primary-nav-button' ).on( 'click', function (e) {
 						e.stopPropagation();
-						$('.primary-nav-button, .primary-nav').toggleClass('open');
+						$( '.primary-nav-button, .primary-nav' ).toggleClass( 'open' );
 					} );
 
 					$( document ).on('click touch', function () {
-						$('.primary-nav-button, .primary-nav').removeClass('open');
+						$( '.primary-nav-button, .primary-nav' ).removeClass( 'open' );
 					} );
 
 					// Fitvids
@@ -418,6 +366,7 @@ class Simple_Shop {
 		</script>
 	<?php
 	}
+
 
 	/*****************
 	 * Gravity Forms *
@@ -583,8 +532,6 @@ class Simple_Shop {
 	 * is added via AJAX.
 	 */
 	function woocommerce_add_to_cart_fragments( $fragments ) {
-		global $woocommerce;
-
 		// Add our fragment
 		$fragments['li.menu-item-type-woocommerce-cart'] = $this->wp_nav_menu_items( '', new stdClass(), true );
 
