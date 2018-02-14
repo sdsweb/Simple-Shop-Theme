@@ -1,19 +1,18 @@
 <?php
 /**
- * The template for displaying product widget entries
+ * The template for displaying product widget entries.
  *
  * This template can be overridden by copying it to yourtheme/woocommerce/content-widget-product.php.
- *
  * HOWEVER, on occasion WooCommerce will need to update template files and you
  * (the theme developer) will need to copy the new files to your theme to
  * maintain compatibility. We try to do this as little as possible, but it does
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @see 	https://docs.woocommerce.com/document/template-structure/
+ * @see     https://docs.woocommerce.com/document/template-structure/
  * @author  WooThemes
  * @package WooCommerce/Templates
- * @version 2.5.0
+ * @version 3.3.0
  */
 
 // Bail if accessed directly
@@ -24,6 +23,8 @@ if ( ! defined( 'ABSPATH' ) )
 ?>
 
 <li class="block-3 <?php echo ( ! has_post_thumbnail() ) ? 'has-image-placeholder' : false; ?>">
+	<?php do_action( 'woocommerce_widget_product_item_start', $args ); ?>
+
 	<a href="<?php echo esc_url( $product->get_permalink() ); ?>">
 		<section class="product">
 			<figure class="product-thumb">
@@ -31,7 +32,7 @@ if ( ! defined( 'ABSPATH' ) )
 			</figure>
 
 			<section class="product-info cf">
-				<h2><?php echo $product->get_name(); ?></h2>
+				<h2 class="product-title"><?php echo $product->get_name(); ?></h2>
 
 				<?php
 					if ( ! empty( $show_rating ) ) :
@@ -43,4 +44,6 @@ if ( ! defined( 'ABSPATH' ) )
 			</section>
 		</section>
 	</a>
+
+	<?php do_action( 'woocommerce_widget_product_item_end', $args ); ?>
 </li>

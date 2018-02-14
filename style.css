@@ -697,6 +697,8 @@ nav.top-nav ul {
 	margin: 10px 0; /* Changed from em's to px due to CSS3 transition, was: 0.25em 0*/
 	padding: 0;
 	text-align: center;
+	position: relative;
+	z-index: 1000;
 }
 
 nav.top-nav ul:first-child > li {
@@ -994,7 +996,9 @@ nav.primary-nav-container ul li a:hover {
 .content-container .archive-title h1.block-title {
 	font-size: 1.17em;
 	/*line-height: .3;*/
+	line-height: 1.5;
 	margin-bottom: 30px;
+	overflow: hidden;
 }
 
 .content-container .page .page-title {
@@ -1008,7 +1012,7 @@ nav.primary-nav-container ul li a:hover {
 .page-content .fancy:before,
 .page-content .fancy:after {
 	position: absolute;
-	top: 0;
+	top: 0.25em;
 	width: 100%;
 	height: 5px;
 	border-top: 1px solid #363636;
@@ -1608,8 +1612,11 @@ section.widget.front-page-slider:first-child .block-title {
 
 .full-width-content .post-container {
 	width: 97%;
-	margin: 0 1.5%;
+	margin: 20px 1.5% 0;
 	float: none;
+}
+.post-wrapper {
+	margin-top: 20px;
 }
 
 .full-width-content .post-image {
@@ -2853,7 +2860,9 @@ section.copyright {
 	margin-bottom: 20px;
 }
 
-.woocommerce ul.products li.product, .woocommerce-page ul.products li.product {
+.woocommerce ul.products li.product, .woocommerce-page ul.products li.product,
+.woocommerce ul.products.columns-3 li.product,
+.woocommerce-page ul.products.columns-3 li.product {
 	float: left;
 	margin-top: 0;
 	margin-right: 1.5%;
@@ -2896,7 +2905,6 @@ section.copyright {
 }
 
 .woocommerce ul.products li.product a img {
-	width: auto;
 	margin-left: auto;
 	margin-right: auto;
 	margin-bottom: 0;
@@ -3581,6 +3589,7 @@ ul.woocommerce-error {
 	article.content, .home article.content {
 		width: 100%;
 		margin-bottom: 0;
+		overflow: visible;
 	}
 
 	aside.sidebar.widgets {
@@ -3597,7 +3606,9 @@ ul.woocommerce-error {
 
 
 	/* WooCommerce */
-	.woocommerce ul.products li.product, .woocommerce-page ul.products li.product {
+	.woocommerce ul.products li.product, .woocommerce-page ul.products li.product,
+	.woocommerce ul.products.columns-3 li.product,
+	.woocommerce-page ul.products.columns-3 li.product {
 		width: 47%;
 	}
 
@@ -3724,7 +3735,9 @@ ul.woocommerce-error {
 	}
 
 	/* WooCommerce */
-	.woocommerce ul.products li.product, .woocommerce-page ul.products li.product {
+	.woocommerce ul.products li.product, .woocommerce-page ul.products li.product,
+	.woocommerce ul.products.columns-3 li.product,
+	.woocommerce-page ul.products.columns-3 li.product {
 		float: none;
 		clear: both;
 		width: 100%;
