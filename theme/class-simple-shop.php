@@ -12,7 +12,7 @@ if ( ! class_exists( 'Simple_Shop' ) ) {
 		/**
 		 * @var string
 		 */
-		public $version = '1.1.3';
+		public $version = '1.1.4';
 
 		private static $instance; // Keep track of the instance
 
