@@ -2,9 +2,21 @@
 Theme: Simple Shop
 Author: Slocum Themes/Slocum Design Studio
 Author URI: https://slocumthemes.com/
-Current Version: 1.1.3
+Current Version: 1.1.4
 ==========================================
 
+
+1.1.4 // February 12 2018
+-------------------------
+- Fixed a bug where clicking on the mobile navigation button would result in the page scrolling to the top
+- Fixed a bug where lengthy top navigation sub-menus would appear underneath the primary navigation menu
+- Fixed a bug where some content was cut off on mobile devices (overflow display issue)
+- Fixed a display issue with the content wrapper element on some pages (added top margin)
+- Fixed a bug where WooCommerce product archive templates did not display the correct number of columns
+- Fixed a bug where WooCommerce featured images did not display at 100% width on product archive templates
+- Removed the WooCommerce archive product template
+- Added logic to add "fancy" wrapper element to WooCommerce page titles
+- Adjusted WooCommerce templates to be compatible with WooCommerce 3.3.0
 
 1.1.3 // April 5 2017
 ---------------------
